@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo:ital,wght@1,800;1,900&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #080e1c; }
+  *::selection { background: #d62839; color: #fff; }
+  ::-webkit-scrollbar { width: 11px; }
+  ::-webkit-scrollbar-track { background: #080e1c; }
+  ::-webkit-scrollbar-thumb { background: #1c2433; border-radius: 0; }
+  @keyframes rdxBlink { 0%,100%{opacity:1} 50%{opacity:.35} }
+  @keyframes rdxScan { 0%{transform:translateY(-100%)} 100%{transform:translateY(100%)} }
+  input::placeholder, textarea::placeholder { color: #5a6678; }
+  code { font-family:'IBM Plex Mono',monospace; font-size:0.92em; }
+</style>
+</helmet>
+
+<div style="background:#080e1c; color:#e8edf4; font-family:'IBM Plex Sans',sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden;">
+
+  <!-- NAV -->
+  <header style="position:sticky; top:0; z-index:50; background:rgba(7,10,16,0.82); backdrop-filter:blur(12px); border-bottom:1px solid #161d29;">
+    <div style="max-width:1240px; margin:0 auto; padding:0 28px; height:70px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+      <a href="#top" style="display:flex; flex-direction:column; gap:2px; text-decoration:none; line-height:1;">
+        <span style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:800; font-style:italic; font-size:33px; letter-spacing:-0.7px;">
+          <span style="background:linear-gradient(180deg,#5e95ff,#2f6fe6); -webkit-background-clip:text; background-clip:text; color:transparent;">Red</span>
+          <span style="position:relative; margin-left:8px; background:linear-gradient(180deg,#5e95ff,#2f6fe6); -webkit-background-clip:text; background-clip:text; color:transparent;">Extel<span style="position:absolute; left:1px; right:-2px; bottom:-3px; height:3.5px; background:#e23744; border-radius:2px; box-shadow:0 0 8px rgba(226,55,68,0.5);"></span></span>
+        </span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:1.4px; color:#ffffff; text-transform:uppercase; padding-left:2px; white-space:nowrap;">Expertos en máxima seguridad</span>
+      </a>
+      <nav style="display:flex; align-items:center; gap:30px; font-size:14px; font-weight:500; color:#aeb9c8;">
+        <a href="#servicios" style="color:inherit; text-decoration:none;">Servicios</a>
+        <a href="#proceso" style="color:inherit; text-decoration:none;">Proceso</a>
+        <a href="#proyectos" style="color:inherit; text-decoration:none;">Proyectos</a>
+        <a href="#nosotros" style="color:inherit; text-decoration:none;">Nosotros</a>
+        <a href="#faq" style="color:inherit; text-decoration:none;">FAQ</a>
+      </nav>
+      <a href="https://wa.me/50252001325" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:8px; background:#d62839; color:#fff; text-decoration:none; font-weight:600; font-size:14px; padding:11px 18px; box-shadow:0 0 0 1px rgba(255,82,82,0.4), 0 8px 24px rgba(214,40,57,0.35);">
+        <span style="width:7px;height:7px;background:#ff5252;border-radius:50%;box-shadow:0 0 8px #ff5252;animation:rdxBlink 1.4s infinite;"></span>
+        Cotizar ahora
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="position:relative; min-height:680px; display:flex; align-items:center; border-bottom:1px solid #161d29; overflow:hidden;">
+    <canvas ref="{{ heroCanvasRef }}" style="position:absolute; inset:0; width:100%; height:100%; display:block;"></canvas>
+    <div style="position:absolute; inset:0; background:linear-gradient(100deg, #080e1c 18%, rgba(7,10,16,0.86) 40%, rgba(7,10,16,0.25) 70%, rgba(7,10,16,0.5) 100%);"></div>
+    <div style="position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 -80px 120px -40px #080e1c, inset 0 60px 90px -40px #080e1c;"></div>
+    <div style="position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:70px 28px; width:100%;">
+      <div style="max-width:680px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; border:1px solid #1f3a52; background:rgba(11,18,28,0.6); padding:8px 14px; text-transform:uppercase;">
+          <span style="width:6px;height:6px;background:#ff5252;border-radius:50%;box-shadow:0 0 10px #ff5252;"></span>
+          Cercas eléctricas · CCTV · Cableado estructurado
+        </div>
+        <h1 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:64px; line-height:0.98; letter-spacing:-0.5px; margin:24px 0 0; color:#fff; text-transform:uppercase;">
+          Protección perimetral<br><span style="color:#ff5252; text-shadow:0 0 32px rgba(255,82,82,0.45);">de alto voltaje</span>, instalada con precisión.
+        </h1>
+        <p style="font-size:18px; line-height:1.6; color:#aeb9c8; margin:24px 0 0; max-width:560px;">
+          Redextel diseña, instala y da mantenimiento a sistemas de seguridad para hogares, comercios y proyectos de construcción en Guatemala. Energía que protege, ingeniería que respalda.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-top:34px;">
+          <a href="#contacto" style="background:#d62839; color:#fff; text-decoration:none; font-weight:600; font-size:15px; padding:15px 26px; box-shadow:0 0 0 1px rgba(255,82,82,0.4), 0 12px 30px rgba(214,40,57,0.4);">Solicitar cotización</a>
+          <a href="#servicios" style="background:transparent; color:#e8edf4; text-decoration:none; font-weight:600; font-size:15px; padding:15px 26px; border:1px solid #2a3344;">Ver servicios →</a>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px 36px; margin-top:46px;">
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span style="font-family:'Oswald',sans-serif; font-size:28px; font-weight:700; color:#fff;">10kV+</span>
+            <span style="font-size:13px; color:#8a97a8; line-height:1.25;">Energizadores<br>no letales</span>
+          </div>
+          <div style="width:1px; align-self:stretch; background:#1c2433;"></div>
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span style="font-family:'Oswald',sans-serif; font-size:28px; font-weight:700; color:#fff;">24/7</span>
+            <span style="font-size:13px; color:#8a97a8; line-height:1.25;">Soporte y<br>monitoreo</span>
+          </div>
+          <div style="width:1px; align-self:stretch; background:#1c2433;"></div>
+          <div style="display:flex; align-items:center; gap:11px;">
+            <span style="font-family:'Oswald',sans-serif; font-size:28px; font-weight:700; color:#fff;">100%</span>
+            <span style="font-size:13px; color:#8a97a8; line-height:1.25;">Instalación<br>certificada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS / TRUST STRIP -->
+  <section style="background:#0b1224; border-bottom:1px solid #161d29;">
+    <div style="max-width:1240px; margin:0 auto; padding:18px 28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:1px; color:#5a6678; text-transform:uppercase;">
+      <span>Residencial</span><span style="color:#1c2433;">/</span>
+      <span>Comercial</span><span style="color:#1c2433;">/</span>
+      <span>Industrial</span><span style="color:#1c2433;">/</span>
+      <span>Constructoras</span><span style="color:#1c2433;">/</span>
+      <span>Condominios</span><span style="color:#1c2433;">/</span>
+      <span>Bodegas</span>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" style="scroll-margin-top:90px; padding:96px 28px; max-width:1240px; margin:0 auto;">
+    <div style="display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:20px; margin-bottom:48px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; text-transform:uppercase;">01 — Lo que hacemos</div>
+        <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; margin:14px 0 0; text-transform:uppercase; color:#fff;">Tres líneas, un solo estándar</h2>
+      </div>
+      <p style="max-width:380px; color:#8a97a8; font-size:15px; line-height:1.6; margin:0;">Integramos seguridad física y conectividad en un mismo proyecto, ejecutado por un solo equipo responsable de principio a fin.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+      <sc-for list="{{ services }}" as="svc" hint-placeholder-count="3">
+        <div style="background:#0f1730; border:1px solid #1c2433; padding:30px; position:relative; overflow:hidden;">
+          <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#d62839,#ff5252,transparent);"></div>
+          <div style="width:54px; height:54px; border:1px solid #243044; display:flex; align-items:center; justify-content:center; background:#0b1428; margin-bottom:22px;">
+            <span style="color:#ff5252;" dangerouslySetInnerHTML="{{ svc.icon }}"></span>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#5a6678; letter-spacing:1px;">{{ svc.num }}</div>
+          <h3 style="font-family:'Oswald',sans-serif; font-weight:600; font-size:24px; margin:6px 0 12px; text-transform:uppercase; color:#fff;">{{ svc.title }}</h3>
+          <p style="color:#8a97a8; font-size:14.5px; line-height:1.6; margin:0 0 18px;">{{ svc.desc }}</p>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px;">
+            <sc-for list="{{ svc.items }}" as="it" hint-placeholder-count="4">
+              <li style="display:flex; align-items:flex-start; gap:10px; font-size:13.5px; color:#c4cdd9;">
+                <span style="color:#d62839; font-weight:700; line-height:1.4;">›</span>{{ it }}
+              </li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso" style="scroll-margin-top:90px; background:#0b1224; border-top:1px solid #161d29; border-bottom:1px solid #161d29;">
+    <div style="max-width:1240px; margin:0 auto; padding:96px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; text-transform:uppercase;">02 — Cómo trabajamos</div>
+      <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; margin:14px 0 48px; text-transform:uppercase; color:#fff;">Del diagnóstico al respaldo</h2>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:18px;">
+        <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+          <div style="position:relative; padding-top:26px;">
+            <div style="position:absolute; top:0; left:0; right:0; height:1px; background:#1c2433;"></div>
+            <div style="position:absolute; top:-1px; left:0; width:48px; height:3px; background:#d62839; box-shadow:0 0 12px rgba(214,40,57,0.6);"></div>
+            <div style="font-family:'Oswald',sans-serif; font-size:44px; font-weight:700; color:#1c2737; line-height:1;">{{ st.n }}</div>
+            <h3 style="font-family:'Oswald',sans-serif; font-weight:600; font-size:20px; margin:10px 0 8px; text-transform:uppercase; color:#fff;">{{ st.title }}</h3>
+            <p style="color:#8a97a8; font-size:14px; line-height:1.6; margin:0;">{{ st.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" style="scroll-margin-top:90px; max-width:1240px; margin:0 auto; padding:96px 28px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; text-transform:uppercase;">03 — Quiénes somos</div>
+        <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; margin:14px 0 20px; text-transform:uppercase; color:#fff;">Ingeniería de seguridad, hecha en Guatemala</h2>
+        <p style="color:#aeb9c8; font-size:16px; line-height:1.7; margin:0 0 18px;">Redextel es una empresa guatemalteca especializada en la instalación domiciliar y comercial de cercas eléctricas, seguridad electrónica y cableado estructurado. Combinamos equipo de grado profesional con instalaciones limpias, ordenadas y certificadas.</p>
+        <p style="color:#8a97a8; font-size:15px; line-height:1.7; margin:0 0 28px;">Trabajamos con hogares, comercios, condominios y constructoras que necesitan un proveedor único, responsable del proyecto completo y de su mantenimiento.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <sc-for list="{{ values }}" as="v" hint-placeholder-count="4">
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="width:10px; height:10px; margin-top:5px; background:#d62839; flex-shrink:0; box-shadow:0 0 10px rgba(214,40,57,0.6);"></span>
+              <div>
+                <div style="font-weight:600; font-size:15px; color:#fff;">{{ v.t }}</div>
+                <div style="font-size:13px; color:#8a97a8; line-height:1.5;">{{ v.d }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position:relative; aspect-ratio:4/3; background:#0f1730; border:1px solid #1c2433; overflow:hidden;">
+        <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(135deg,#10182400 0 14px,#141d2b66 14px 15px);"></div>
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; font-family:'IBM Plex Mono',monospace; color:#46566c;">
+          <span style="width:46px;height:46px;border:1px solid #2a3344;display:flex;align-items:center;justify-content:center;">◳</span>
+          <span style="font-size:12px; letter-spacing:1px;">[ FOTO · equipo / instalación ]</span>
+        </div>
+        <div style="position:absolute; left:0; right:0; top:0; height:40%; background:linear-gradient(#ff525210,transparent); animation:rdxScan 4s linear infinite;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS / GALERIA -->
+  <section id="proyectos" style="scroll-margin-top:90px; background:#0b1224; border-top:1px solid #161d29; border-bottom:1px solid #161d29;">
+    <div style="max-width:1240px; margin:0 auto; padding:96px 28px;">
+      <div style="display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:20px; margin-bottom:40px;">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; text-transform:uppercase;">04 — Proyectos</div>
+          <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; margin:14px 0 0; text-transform:uppercase; color:#fff;">Instalaciones recientes</h2>
+        </div>
+        <p style="color:#8a97a8; font-size:14px; max-width:360px; margin:0;">Las fotos se cargan desde la carpeta <code style="color:#5e95ff;">fotos/</code> del repositorio. Reemplaza cada archivo y aparecen aquí.</p>
+      </div>
+
+      <div style="display:flex; align-items:flex-start; gap:12px; margin:0 0 22px; padding:13px 16px; background:#0f1730; border:1px solid #233a5e; border-left:3px solid #2f6fe6;">
+        <span style="width:30px;height:30px;flex-shrink:0;background:#101a36;border:1px solid #2f6fe6;color:#5e95ff;display:flex;align-items:center;justify-content:center;font-weight:700;">↑</span>
+        <p style="margin:0; color:#aeb9c8; font-size:13.5px; line-height:1.55;"><strong style="color:#fff;">Para subir fotos:</strong> coloca las imágenes en la carpeta <code style="color:#5e95ff;">fotos/</code> con los nombres <code style="color:#9aa6b5;">proyecto-1.jpg</code> … <code style="color:#9aa6b5;">proyecto-6.jpg</code>, haz commit y push. Aparecerán automáticamente.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+        <sc-for list="{{ projects }}" as="p" hint-placeholder-count="6">
+          <figure style="margin:0; display:flex; flex-direction:column; gap:0;">
+            <div style="position:relative; width:100%; aspect-ratio:4/3; border:1px solid #1c2433; background:#0f1730; overflow:hidden;">
+              <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; background-image:repeating-linear-gradient(45deg,#10182400 0 13px,#141d2b 13px 14px);">
+                <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; color:#46566c;">{{ p.file }}</span>
+                <span style="font-size:11px; color:#3a4a63;">[ pendiente ]</span>
+              </div>
+              <div role="img" aria-label="{{ p.label }}" style="position:absolute; inset:0; background-image:url('{{ p.src }}'); background-size:cover; background-position:center;"></div>
+            </div>
+            <figcaption style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; color:#7c889a; padding:9px 2px 0;">{{ p.label }}</figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section style="max-width:1240px; margin:0 auto; padding:96px 28px;">
+    <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; text-transform:uppercase;">05 — Clientes</div>
+    <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; margin:14px 0 48px; text-transform:uppercase; color:#fff;">Lo que dicen de Redextel</h2>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px;">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="background:#0f1730; border:1px solid #1c2433; padding:28px; display:flex; flex-direction:column;">
+          <div style="color:#d62839; font-size:13px; letter-spacing:3px; margin-bottom:14px;">★★★★★</div>
+          <p style="color:#dbe2ec; font-size:15.5px; line-height:1.65; margin:0 0 22px; flex:1;">"{{ t.quote }}"</p>
+          <div style="display:flex; align-items:center; gap:12px; border-top:1px solid #1c2433; padding-top:18px;">
+            <span style="width:38px;height:38px;background:linear-gradient(135deg,#1c2737,#243044);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:600;color:#ff5252;">{{ t.ini }}</span>
+            <div>
+              <div style="font-weight:600; font-size:14px; color:#fff;">{{ t.name }}</div>
+              <div style="font-size:12.5px; color:#8a97a8;">{{ t.role }}</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="scroll-margin-top:90px; background:#0b1224; border-top:1px solid #161d29; border-bottom:1px solid #161d29;">
+    <div style="max-width:880px; margin:0 auto; padding:96px 28px;">
+      <div style="text-align:center; margin-bottom:44px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; text-transform:uppercase;">06 — Preguntas frecuentes</div>
+        <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; margin:14px 0 0; text-transform:uppercase; color:#fff;">Resolvemos tus dudas</h2>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+          <div style="background:#0f1730; border:1px solid #1c2433;">
+            <button onClick="{{ f.toggle }}" style="width:100%; text-align:left; background:transparent; border:none; cursor:pointer; padding:20px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; color:#fff; font-family:'IBM Plex Sans',sans-serif; font-size:16px; font-weight:600;">
+              {{ f.q }}
+              <span style="color:#ff5252; font-size:22px; flex-shrink:0; transition:transform .2s; transform:{{ f.rot }};">+</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <div style="padding:0 22px 22px; color:#9aa6b5; font-size:14.5px; line-height:1.65;">{{ f.a }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" style="scroll-margin-top:90px; max-width:1240px; margin:0 auto; padding:96px 28px;">
+    <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:2px; color:#ff5252; text-transform:uppercase;">07 — Contacto</div>
+        <h2 style="font-family:'Oswald',sans-serif; font-weight:700; font-size:46px; letter-spacing:-0.5px; margin:14px 0 18px; text-transform:uppercase; color:#fff;">Cotiza tu proyecto hoy</h2>
+        <p style="color:#aeb9c8; font-size:16px; line-height:1.7; margin:0 0 34px;">Cuéntanos qué necesitas proteger. Te respondemos con una visita técnica y cotización sin compromiso.</p>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <a href="https://wa.me/50252001325" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; text-decoration:none; background:#0f1730; border:1px solid #1c2433; padding:16px 18px;">
+            <span style="width:40px;height:40px;background:#16331f;border:1px solid #1f5a35;color:#3ddc84;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">WA</span>
+            <div><div style="font-size:12px;color:#8a97a8;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;">WHATSAPP</div><div style="color:#fff;font-weight:600;font-size:16px;">+502 5200 1325</div></div>
+          </a>
+          <a href="tel:+50277252016" style="display:flex; align-items:center; gap:14px; text-decoration:none; background:#0f1730; border:1px solid #1c2433; padding:16px 18px;">
+            <span style="width:40px;height:40px;background:#101a36;border:1px solid #1f3a52;color:#ff5252;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">TEL</span>
+            <div><div style="font-size:12px;color:#8a97a8;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;">OFICINA</div><div style="color:#fff;font-weight:600;font-size:16px;">+502 7725 2016</div></div>
+          </a>
+          <a href="mailto:info@redextel.net" style="display:flex; align-items:center; gap:14px; text-decoration:none; background:#0f1730; border:1px solid #1c2433; padding:16px 18px;">
+            <span style="width:40px;height:40px;background:#101a36;border:1px solid #1f3a52;color:#ff5252;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">@</span>
+            <div><div style="font-size:12px;color:#8a97a8;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;">EMAIL</div><div style="color:#fff;font-weight:600;font-size:16px;">info@redextel.net</div></div>
+          </a>
+          <div style="display:flex; align-items:flex-start; gap:14px; background:#0f1730; border:1px solid #1c2433; padding:16px 18px;">
+            <span style="width:40px;height:40px;background:#101a36;border:1px solid #1f3a52;color:#ff5252;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;">◎</span>
+            <div><div style="font-size:12px;color:#8a97a8;font-family:'IBM Plex Mono',monospace;letter-spacing:1px;">DIRECCIÓN</div><div style="color:#dbe2ec;font-weight:500;font-size:15px;line-height:1.5;">Sector 4, casa 8, Hacienda Santo Domingo,<br>San Lucas Sacatepéquez, Sacatepéquez</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#0f1730; border:1px solid #1c2433; padding:32px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#d62839,#ff5252,transparent);"></div>
+        <h3 style="font-family:'Oswald',sans-serif; font-weight:600; font-size:24px; margin:0 0 6px; text-transform:uppercase; color:#fff;">Solicitud de cotización</h3>
+        <p style="color:#8a97a8; font-size:13.5px; margin:0 0 26px;">Se envía directo a nuestro WhatsApp.</p>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <label style="display:flex; flex-direction:column; gap:7px;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; color:#8a97a8; text-transform:uppercase;">Nombre</span>
+            <input value="{{ form.nombre }}" onInput="{{ onNombre }}" placeholder="Tu nombre o empresa" style="background:#080e1c; border:1px solid #1c2433; color:#fff; padding:13px 14px; font-size:15px; font-family:inherit; outline:none;" style-focus="border-color:#d62839;" />
+          </label>
+          <label style="display:flex; flex-direction:column; gap:7px;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; color:#8a97a8; text-transform:uppercase;">Servicio de interés</span>
+            <select value="{{ form.tipo }}" onChange="{{ onTipo }}" style="background:#080e1c; border:1px solid #1c2433; color:#fff; padding:13px 14px; font-size:15px; font-family:inherit; outline:none; appearance:none;" style-focus="border-color:#d62839;">
+              <option>Cerca eléctrica</option>
+              <option>Seguridad electrónica / CCTV</option>
+              <option>Cableado estructurado</option>
+              <option>Proyecto integral</option>
+            </select>
+          </label>
+          <label style="display:flex; flex-direction:column; gap:7px;">
+            <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; color:#8a97a8; text-transform:uppercase;">Detalle</span>
+            <textarea value="{{ form.detalle }}" onInput="{{ onDetalle }}" placeholder="Tipo de inmueble, metros de perímetro, ubicación…" rows="4" style="background:#080e1c; border:1px solid #1c2433; color:#fff; padding:13px 14px; font-size:15px; font-family:inherit; outline:none; resize:vertical;" style-focus="border-color:#d62839;"></textarea>
+          </label>
+          <button onClick="{{ submit }}" style="background:#d62839; color:#fff; border:none; cursor:pointer; font-weight:600; font-size:15px; padding:15px; box-shadow:0 0 0 1px rgba(255,82,82,0.4), 0 10px 26px rgba(214,40,57,0.35); display:flex; align-items:center; justify-content:center; gap:9px;">
+            <span style="width:7px;height:7px;background:#ff5252;border-radius:50%;box-shadow:0 0 8px #ff5252;"></span>
+            Enviar por WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#080e1c; border-top:1px solid #161d29;">
+    <div style="max-width:1240px; margin:0 auto; padding:46px 28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
+      <div style="display:flex; flex-direction:column; gap:3px; line-height:1;">
+        <span style="display:flex; align-items:baseline; font-family:'Archivo',sans-serif; font-weight:800; font-style:italic; font-size:24px; letter-spacing:-0.6px;">
+          <span style="background:linear-gradient(180deg,#5e95ff,#2f6fe6); -webkit-background-clip:text; background-clip:text; color:transparent;">Red</span>
+          <span style="position:relative; margin-left:6px; background:linear-gradient(180deg,#5e95ff,#2f6fe6); -webkit-background-clip:text; background-clip:text; color:transparent;">Extel<span style="position:absolute; left:1px; right:-2px; bottom:-3px; height:3px; background:#e23744; border-radius:2px;"></span></span>
+        </span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:2.2px; color:#5a6678; text-transform:uppercase;">Expertos en máxima seguridad</span>
+      </div>
+      <div style="font-size:13px; color:#5a6678; font-family:'IBM Plex Mono',monospace;">© {{ year }} Redextel · Cercas eléctricas · Seguridad electrónica · Cableado estructurado</div>
+      <a href="https://wa.me/50252001325" target="_blank" rel="noopener" style="color:#ff5252; text-decoration:none; font-size:14px; font-weight:600;">+502 5200 1325 →</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accent&quot;: { &quot;editor&quot;:&quot;color&quot;, &quot;default&quot;:&quot;#d62839&quot;, &quot;tsType&quot;:&quot;string&quot;, &quot;options&quot;:[&quot;#d62839&quot;,&quot;#e23744&quot;,&quot;#ff5252&quot;,&quot;#a51d2a&quot;], &quot;section&quot;:&quot;Animación&quot; },
+  &quot;voltage&quot;: { &quot;editor&quot;:&quot;range&quot;, &quot;default&quot;:6, &quot;min&quot;:2, &quot;max&quot;:14, &quot;step&quot;:1, &quot;tsType&quot;:&quot;number&quot;, &quot;section&quot;:&quot;Animación&quot; },
+  &quot;showGrid&quot;: { &quot;editor&quot;:&quot;boolean&quot;, &quot;default&quot;:true, &quot;tsType&quot;:&quot;boolean&quot;, &quot;section&quot;:&quot;Animación&quot; }
+}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.heroCanvasRef = React.createRef();
+    this.state = {
+      openFaq: 0,
+      form: { nombre:'', tipo:'Cerca eléctrica', detalle:'' }
+    };
+  }
+
+  componentDidMount(){ this.startAnim(); }
+  componentWillUnmount(){
+    cancelAnimationFrame(this._raf);
+    if(this._resize) window.removeEventListener('resize', this._resize);
+  }
+
+  hexRgb(hex){
+    const h = (hex||'#d62839').replace('#','');
+    return { r:parseInt(h.substr(0,2),16), g:parseInt(h.substr(2,2),16), b:parseInt(h.substr(4,2),16) };
+  }
+
+  startAnim(){
+    const canvas = this.heroCanvasRef.current;
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w=0,h=0,dpr=1;
+    const resize=()=>{
+      const r = canvas.getBoundingClientRect();
+      if(!r.width) return;
+      dpr = Math.min(window.devicePixelRatio||1, 2);
+      w=r.width; h=r.height;
+      canvas.width=Math.round(w*dpr); canvas.height=Math.round(h*dpr);
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    };
+    resize();
+    this._resize=resize; window.addEventListener('resize', resize);
+
+    const LEVELS=[0.4,0.62,0.82,1.0]; // wire heights on the perimeter ring
+    const lerp=(a,b,t)=>a+(b-a)*t;
+    const TAU=Math.PI*2;
+
+    // pulses orbit the ring: {a, sp, lvl}
+    let pulses=[];
+    const ensurePulses=(n)=>{
+      while(pulses.length<n){
+        pulses.push({ a:Math.random()*TAU, sp:0.004+Math.random()*0.006, lvl:pulses.length%LEVELS.length });
+      }
+      if(pulses.length>n) pulses.length=n;
+    };
+    let sparks=[]; // {a, l0, life}
+
+    const loop=(time)=>{
+      if(!w){ resize(); }
+      const t = time*0.001;
+      const accent = (this.props && this.props.accent) || '#d62839';
+      const volt = (this.props && this.props.voltage!=null) ? this.props.voltage : 6;
+      const showGrid = (this.props && this.props.showGrid!=null) ? this.props.showGrid : true;
+      const c = this.hexRgb(accent);
+      const A = (a)=>`rgba(${c.r},${c.g},${c.b},${a})`;
+
+      ctx.clearRect(0,0,w,h);
+
+      // --- scene: modern house behind a perimeter wall topped with electric fence ---
+      const cx = w*0.75, gy = h*0.55;
+      const rx = Math.min(h*0.30, w*0.26), ry = rx*0.34;
+      const wallH = h*0.095, fenceH = h*0.065;
+      const N = 18; // fence posts per arc
+      const frontAmt=(a)=>(Math.sin(a)+1)/2;           // 0 = behind, 1 = in front
+      const scaleAt=(a)=>0.62+0.38*frontAmt(a);        // perspective scale per angle
+      const ground=(a)=>({ x:cx+rx*Math.cos(a), y:gy+ry*Math.sin(a) });
+      const wallTop=(a)=>{ const g=ground(a); return { x:g.x, y:g.y - wallH*scaleAt(a) }; };
+      const top=(a,l)=>{ const wt=wallTop(a); return { x:wt.x, y:wt.y - fenceH*scaleAt(a)*l }; };
+
+      // ground: expanding shield rings
+      if(showGrid){
+        for(let k=0;k<3;k++){
+          const ph=((t*0.3)+k/3)%1, sc=0.55+ph*0.8;
+          ctx.strokeStyle=A(0.13*(1-ph)); ctx.lineWidth=1.2;
+          ctx.beginPath(); ctx.ellipse(cx,gy,rx*sc,ry*sc,0,0,TAU); ctx.stroke();
+        }
+      }
+
+      // solid perimeter wall face between two angles
+      const fillWall=(amin,amax)=>{
+        const steps=48;
+        ctx.beginPath();
+        for(let s=0;s<=steps;s++){ const a=amin+(amax-amin)*s/steps; const g=ground(a); s===0?ctx.moveTo(g.x,g.y):ctx.lineTo(g.x,g.y); }
+        for(let s=steps;s>=0;s--){ const a=amin+(amax-amin)*s/steps; const wt=wallTop(a); ctx.lineTo(wt.x,wt.y); }
+        ctx.closePath();
+        const wg=ctx.createLinearGradient(0,gy-wallH,0,gy+ry);
+        wg.addColorStop(0,'rgba(40,56,92,1)'); wg.addColorStop(1,'rgba(16,25,48,1)');
+        ctx.fillStyle=wg; ctx.fill();
+        // pilaster lines
+        for(let i=0;i<=10;i++){ const a=amin+(amax-amin)*i/10; const g=ground(a), wt=wallTop(a);
+          ctx.strokeStyle='rgba(8,13,28,0.55)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(g.x,g.y); ctx.lineTo(wt.x,wt.y); ctx.stroke(); }
+        // top cap
+        ctx.beginPath();
+        for(let s=0;s<=steps;s++){ const a=amin+(amax-amin)*s/steps; const wt=wallTop(a); s===0?ctx.moveTo(wt.x,wt.y):ctx.lineTo(wt.x,wt.y); }
+        ctx.strokeStyle='rgba(160,185,222,0.45)'; ctx.lineWidth=2; ctx.stroke();
+      };
+
+      // electric fence (posts + wires) mounted on the wall top
+      const drawFence=(amin,amax)=>{
+        LEVELS.forEach((l,li)=>{
+          ctx.beginPath();
+          for(let s=0;s<=48;s++){ const a=amin+(amax-amin)*s/48; const p=top(a,l); s===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y); }
+          ctx.strokeStyle=A(0.32+0.05*Math.sin(t*2+li)); ctx.lineWidth=1.25; ctx.stroke();
+        });
+        ctx.lineCap='round';
+        for(let i=0;i<N;i++){ const a=amin+(amax-amin)*i/(N-1); const b=wallTop(a), tp=top(a,LEVELS[LEVELS.length-1]+0.14);
+          ctx.strokeStyle=A(0.22+0.34*frontAmt(a)); ctx.lineWidth=1+1.6*scaleAt(a);
+          ctx.beginPath(); ctx.moveTo(b.x,b.y); ctx.lineTo(tp.x,tp.y); ctx.stroke(); }
+      };
+
+      // modern two-block house inside the wall
+      const drawHouse=()=>{
+        const byB = gy - ry*0.06;
+        const Hw = rx*1.18, x0 = cx - Hw*0.5;
+        const edge='rgba(160,185,222,0.45)';
+        const grad=(y,hh)=>{ const g=ctx.createLinearGradient(0,y,0,y+hh); g.addColorStop(0,'rgba(22,33,60,0.99)'); g.addColorStop(1,'rgba(12,20,40,0.99)'); return g; };
+        const warm=(a)=>`rgba(255,205,138,${a})`;
+        const glow=0.32+0.05*Math.sin(t*2);
+        // block A — left single storey
+        const aW=Hw*0.5, aH=h*0.115, ay=byB-aH;
+        ctx.fillStyle=grad(ay,aH); ctx.fillRect(x0,ay,aW,aH);
+        ctx.strokeStyle=edge; ctx.lineWidth=1.3; ctx.strokeRect(x0,ay,aW,aH);
+        ctx.fillStyle='rgba(30,45,76,0.99)'; ctx.fillRect(x0-7,ay-5,aW+14,6); // roof slab
+        ctx.fillStyle=warm(glow); ctx.fillRect(x0+aW*0.12, ay+aH*0.32, aW*0.76, aH*0.34); // long window
+        ctx.strokeStyle='rgba(10,16,32,0.6)'; ctx.lineWidth=1; ctx.beginPath();
+        ctx.moveTo(x0+aW*0.5, ay+aH*0.32); ctx.lineTo(x0+aW*0.5, ay+aH*0.66); ctx.stroke();
+        // block B — right two storeys (taller)
+        const bW=Hw*0.46, bx0=x0+aW*0.92, bH=h*0.19, by=byB-bH;
+        ctx.fillStyle=grad(by,bH); ctx.fillRect(bx0,by,bW,bH);
+        ctx.strokeStyle=edge; ctx.lineWidth=1.3; ctx.strokeRect(bx0,by,bW,bH);
+        ctx.fillStyle='rgba(30,45,76,0.99)'; ctx.fillRect(bx0-7,by-5,bW+14,6); // roof slab
+        // big window grid
+        const gx=bx0+bW*0.16, gyy=by+bH*0.14, gw=bW*0.68, gh=bH*0.62;
+        ctx.fillStyle=warm(glow); ctx.fillRect(gx,gyy,gw,gh);
+        ctx.strokeStyle='rgba(10,16,32,0.65)'; ctx.lineWidth=1.4; ctx.beginPath();
+        ctx.moveTo(gx+gw/2,gyy); ctx.lineTo(gx+gw/2,gyy+gh);
+        ctx.moveTo(gx,gyy+gh/2); ctx.lineTo(gx+gw,gyy+gh/2); ctx.stroke();
+        ctx.strokeStyle=edge; ctx.lineWidth=1; ctx.strokeRect(gx,gyy,gw,gh);
+        // red accent fin on block B
+        ctx.fillStyle=A(0.55); ctx.fillRect(bx0+bW-3, by, 3, bH);
+        // door between the blocks
+        const dw=Hw*0.05, dh=aH*0.66, dxx=bx0-dw-3;
+        ctx.fillStyle=warm(glow*0.8); ctx.fillRect(dxx,byB-dh,dw,dh);
+        ctx.strokeStyle=edge; ctx.lineWidth=1; ctx.strokeRect(dxx,byB-dh,dw,dh);
+        // a small tree to the left
+        const tx=x0-Hw*0.1, tb=byB;
+        ctx.strokeStyle='rgba(70,90,120,0.6)'; ctx.lineWidth=2.5;
+        ctx.beginPath(); ctx.moveTo(tx,tb); ctx.lineTo(tx,tb-aH*0.5); ctx.stroke();
+        ctx.fillStyle='rgba(28,60,52,0.85)';
+        ctx.beginPath(); ctx.arc(tx,tb-aH*0.62,aH*0.34,0,TAU); ctx.fill();
+        ctx.beginPath(); ctx.arc(tx-aH*0.22,tb-aH*0.45,aH*0.24,0,TAU); ctx.fill();
+        ctx.beginPath(); ctx.arc(tx+aH*0.22,tb-aH*0.45,aH*0.24,0,TAU); ctx.fill();
+      };
+
+      // depth order: far wall+fence → house → near wall → near fence
+      fillWall(Math.PI, TAU);
+      drawFence(Math.PI, TAU);
+      drawHouse();
+      fillWall(0, Math.PI);
+      drawFence(0, Math.PI);
+
+      // protective dome over the house
+      ctx.save();
+      ctx.globalCompositeOperation='lighter';
+      const dg=ctx.createRadialGradient(cx,gy,rx*0.2,cx,gy,rx*1.5);
+      dg.addColorStop(0,A(0)); dg.addColorStop(0.7,A(0.05)); dg.addColorStop(1,A(0));
+      ctx.fillStyle=dg; ctx.beginPath(); ctx.ellipse(cx,gy,rx*1.4,h*0.5,0,Math.PI,TAU); ctx.fill();
+      ctx.strokeStyle=A(0.2+0.08*Math.sin(t*1.5)); ctx.lineWidth=1.5;
+      ctx.beginPath(); ctx.ellipse(cx,gy,rx*1.08,h*0.46,0,Math.PI,TAU); ctx.stroke();
+      ctx.restore();
+
+      // --- pulses orbiting the ring (additive glow) ---
+      ensurePulses(Math.max(6, Math.round(volt*1.8)));
+      ctx.globalCompositeOperation='lighter';
+      pulses.forEach(pl=>{
+        pl.a += pl.sp; if(pl.a>TAU) pl.a-=TAU;
+        const p=top(pl.a, LEVELS[pl.lvl]);
+        const fr=frontAmt(pl.a);
+        const sz=1.6+3*fr, glow=0.28+0.6*fr;
+        const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,sz*5);
+        g.addColorStop(0,`rgba(255,235,228,${glow})`);
+        g.addColorStop(0.3,A(glow*0.8));
+        g.addColorStop(1,A(0));
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,sz*5,0,TAU); ctx.fill();
+        ctx.fillStyle=`rgba(255,240,235,${glow})`;
+        ctx.beginPath(); ctx.arc(p.x,p.y,sz*0.7,0,TAU); ctx.fill();
+      });
+
+      // --- sparks between wires (front half) ---
+      if(Math.random() < volt*0.0016){
+        sparks.push({ a:Math.random()*Math.PI, l0:Math.floor(Math.random()*(LEVELS.length-1)), life:1 });
+      }
+      sparks.forEach(sp=>{
+        sp.life-=0.08; if(sp.life<=0) return;
+        const a=top(sp.a, LEVELS[sp.l0]);
+        const b=top(sp.a, LEVELS[sp.l0+1]);
+        ctx.strokeStyle=`rgba(255,224,216,${sp.life*0.9})`; ctx.lineWidth=1.3;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y);
+        const seg=4;
+        for(let k=1;k<seg;k++){ const tt=k/seg; ctx.lineTo(lerp(a.x,b.x,tt)+(Math.random()-0.5)*6, lerp(a.y,b.y,tt)); }
+        ctx.lineTo(b.x,b.y); ctx.stroke();
+      });
+      sparks=sparks.filter(s=>s.life>0);
+
+      ctx.globalCompositeOperation='source-over';
+
+      this._raf=requestAnimationFrame(loop);
+    };
+    this._raf=requestAnimationFrame(loop);
+  }
+
+  setForm(k,v){ this.setState(s=>({ form:{...s.form, [k]:v } })); }
+
+  renderVals(){
+    const svgWrap = (inner)=>({ __html:`<svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">${inner}</svg>` });
+    const services = [
+      { num:'/ 01', title:'Cercas eléctricas', icon:svgWrap('<line x1="4" y1="3" x2="4" y2="23"/><line x1="22" y1="3" x2="22" y2="23"/><line x1="4" y1="8" x2="22" y2="8"/><line x1="4" y1="13" x2="22" y2="13"/><line x1="4" y1="18" x2="22" y2="18"/><polyline points="14,9 11,14 15,14 12,19" stroke-width="1.4"/>'),
+        desc:'Perímetros energizados con energizadores de grado profesional, descarga no letal y disuasión real para intrusos.',
+        items:['Energizadores de alto voltaje no letal','Postería, aisladores y tensado profesional','Integración con alarma y sirena','Cobertura de muros, techos y portones'] },
+      { num:'/ 02', title:'Seguridad electrónica', icon:svgWrap('<rect x="3" y="7" width="14" height="9" rx="1.5"/><circle cx="10" cy="11.5" r="2.6"/><path d="M17 10l5-2.5v9L17 14"/>'),
+        desc:'Videovigilancia, alarmas y control de acceso para vigilar y registrar todo lo que ocurre en tu propiedad.',
+        items:['Cámaras CCTV / IP y DVR-NVR','Monitoreo remoto desde tu celular','Alarmas, sensores y sirenas','Control de acceso y videoporteros'] },
+      { num:'/ 03', title:'Cableado estructurado', icon:svgWrap('<rect x="4" y="3" width="18" height="20" rx="1.5"/><line x1="4" y1="9" x2="22" y2="9"/><line x1="4" y1="15" x2="22" y2="15"/><circle cx="8" cy="6" r="1"/><circle cx="8" cy="12" r="1"/><circle cx="8" cy="18" r="1"/>'),
+        desc:'Redes de datos y voz ordenadas, certificadas y listas para crecer, en oficinas, comercios y obra nueva.',
+        items:['Redes de datos y voz UTP / fibra','Racks, patch panels y organización','Certificación y etiquetado','Puntos de red para CCTV y WiFi'] },
+    ];
+    const steps = [
+      { n:'01', title:'Diagnóstico', desc:'Visita técnica para evaluar el perímetro, riesgos y necesidades reales del inmueble.' },
+      { n:'02', title:'Diseño y cotización', desc:'Propuesta clara con equipos, alcances y precio. Sin sorpresas ni costos ocultos.' },
+      { n:'03', title:'Instalación', desc:'Montaje limpio y certificado por nuestro equipo, con pruebas de funcionamiento.' },
+      { n:'04', title:'Soporte', desc:'Mantenimiento, garantía por escrito y respuesta cuando lo necesites, 24/7.' },
+    ];
+    const values = [
+      { t:'Proveedor único', d:'Seguridad y red en un mismo proyecto.' },
+      { t:'Equipo certificado', d:'Materiales y montaje de grado profesional.' },
+      { t:'Instalación limpia', d:'Cableado ordenado y bien presentado.' },
+      { t:'Garantía real', d:'Respaldo por escrito y soporte continuo.' },
+    ];
+    const projects = [
+      { file:'proyecto-1.jpg', label:'Cerca perimetral · Residencial' },
+      { file:'proyecto-2.jpg', label:'Centro de monitoreo CCTV' },
+      { file:'proyecto-3.jpg', label:'Rack y cableado · Oficina' },
+      { file:'proyecto-4.jpg', label:'Portón y control de acceso' },
+      { file:'proyecto-5.jpg', label:'Cerca eléctrica · Bodega' },
+      { file:'proyecto-6.jpg', label:'Red estructurada · Comercio' },
+    ].map(p=>({ ...p, src:'fotos/'+p.file }));
+    const testimonials = [
+      { quote:'Instalaron la cerca eléctrica y las cámaras de toda la casa en dos días. Trabajo limpio y nos explicaron todo.', name:'Familia Morales', role:'Residencial · San Lucas', ini:'FM' },
+      { quote:'Llevaron el cableado y el CCTV de nuestras dos sucursales. Ordenados, puntuales y con buen soporte.', name:'Comercial El Roble', role:'Comercio · Guatemala', ini:'CR' },
+      { quote:'Como constructora necesitábamos un solo proveedor para seguridad y red. Redextel cumplió en tiempo.', name:'Constructora VH', role:'Proyecto · Sacatepéquez', ini:'VH' },
+    ];
+    const faqData = [
+      { q:'¿La cerca eléctrica es peligrosa?', a:'No. Usamos energizadores que entregan una descarga de alto voltaje pero baja corriente, diseñada para disuadir sin causar daño permanente, cumpliendo normas de seguridad.' },
+      { q:'¿Atienden casas y también empresas?', a:'Sí. Trabajamos con residencias, comercios, condominios, bodegas y constructoras, adaptando el proyecto a cada tipo de inmueble.' },
+      { q:'¿Puedo ver las cámaras desde mi celular?', a:'Sí. Configuramos el sistema de CCTV para monitoreo remoto en tiempo real desde tu teléfono o computadora.' },
+      { q:'¿En qué zonas instalan?', a:'Tenemos base en San Lucas Sacatepéquez y damos cobertura en Sacatepéquez, Guatemala y áreas cercanas. Consúltanos por tu ubicación.' },
+      { q:'¿Incluye garantía y mantenimiento?', a:'Todas nuestras instalaciones incluyen garantía por escrito. Ofrecemos planes de mantenimiento y soporte 24/7.' },
+      { q:'¿Cómo solicito una cotización?', a:'Escríbenos por WhatsApp o llena el formulario de esta página. Coordinamos una visita técnica sin compromiso y te entregamos la propuesta.' },
+    ];
+    const faqs = faqData.map((f,i)=>({
+      q:f.q, a:f.a,
+      open: this.state.openFaq===i,
+      rot: this.state.openFaq===i ? 'rotate(45deg)' : 'rotate(0deg)',
+      toggle: ()=> this.setState(s=>({ openFaq: s.openFaq===i ? -1 : i }))
+    }));
+
+    const submit = ()=>{
+      const f=this.state.form;
+      const txt = `Hola Redextel 👋. Soy ${f.nombre||'(sin nombre)'}. Me interesa: ${f.tipo}.`+(f.detalle?` Detalle: ${f.detalle}`:'');
+      window.open('https://wa.me/50252001325?text='+encodeURIComponent(txt),'_blank');
+    };
+
+    return {
+      heroCanvasRef:this.heroCanvasRef,
+      year:new Date().getFullYear(),
+      services, steps, values, projects, testimonials, faqs,
+      form:this.state.form,
+      onNombre:(e)=>this.setForm('nombre', e.target.value),
+      onTipo:(e)=>this.setForm('tipo', e.target.value),
+      onDetalle:(e)=>this.setForm('detalle', e.target.value),
+      submit,
+    };
+  }
+}
+</script>
+</body>
+</html>
